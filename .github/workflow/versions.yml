@@ -1,0 +1,38 @@
+name: Check Software Versions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  check-software-versions:
+    runs-on: self-hosted
+
+    steps:
+      # Checkout the code repository (if needed)
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Verify software versions
+      - name: Check software versions
+        run: |
+          echo "Checking software versions..."
+          
+          docker --version || echo "Docker not installed"
+          docker-compose --version || echo "Docker Compose not installed"
+          dotnet --version || echo ".NET SDK not installed"
+          pip --version || echo "pip not installed"
+          ansible --version || echo "Ansible not installed"
+          node --version || echo "Node.js not installed"
+          java -version || echo "Java not installed"
+          mvn --version || echo "Maven not installed"
+          terraform --version || echo "Terraform not installed"
+          packer --version || echo "Packer not installed"
+          kubectl version --client || echo "kubectl not installed"
+          kubectx --version || echo "kubectx not installed"
+          kubens --version || echo "kubens not installed"
+          k9s version || echo "K9s not installed"
+          tfsec --version || echo "tfsec not installed"
+          trivy --version || echo "Trivy not installed"
